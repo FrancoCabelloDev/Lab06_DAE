@@ -1,9 +1,12 @@
 from django.urls import path
-from .views import ArticleListView, ArticleDetailView
+from news import views
 
-app_name = 'news'
+app_name = "news"
 
 urlpatterns = [
-    path('', ArticleListView.as_view(), name='home'),
-    path('article/<slug:slug>/', ArticleDetailView.as_view(), name='article_detail'),
+    # Home page with latest articles
+    path("", views.ArticleListView.as_view(), name="home"),
+    
+    # Article detail page
+    path("article/<slug:slug>/", views.ArticleDetailView.as_view(), name="article_detail"),
 ]
