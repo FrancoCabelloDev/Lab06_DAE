@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('news.urls')),
+    path('search/', include('news.urls')),  # Add this line to route search requests
 ]
 
 # Serve media files in development

@@ -41,3 +41,9 @@ class ArticleDetailView(DetailView):
             status="published"
         ).order_by("-published_date")[:5]
         return context
+
+
+def search_articles(request):
+    query = request.GET.get('q', '')
+    articles = Article.objects.filter(title__icontains=query) | Article.objects.filter(content__icontains=query)
+    return render(request, 'news/search_results.html', {'articles': articles, 'query': query})
